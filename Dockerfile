@@ -1,5 +1,5 @@
 from python:3.14-alpine3.22
-label maintainer= "github.com/xyz-leo"
+label maintainer=xyz-leo
 
 # Do not create .pyc files
 ENV PYTHONDONTWRITEBYTECODE 1
