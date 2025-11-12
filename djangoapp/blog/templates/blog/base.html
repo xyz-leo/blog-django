@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{% block title %}xyzBlog{% endblock %}</title>
+
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+  {% block css %}{% endblock %}
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container">
+      <a href="/" class="logo">MyBlog</a>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/posts">Posts</a></li>
+          <li><a href="/about">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container content">
+    {% block content %}
+    <!-- Content of the page -->
+    {% endblock %}
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 xyzBlog — Built with Django.</p>
+  </footer>
+
+  {% block js %}{% endblock %}
+
+</body>
+</html>
