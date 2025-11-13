@@ -1,31 +1,32 @@
 {% extends "blog/base.html" %}
 {% load static %}
 
-{% block title %}Home - MyBlog{% endblock %}
+{% block title %}Home - xyzBlog{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'blog/css/pages/index.css' %}">
 {% endblock %}
 
 {% block content %}
-<section class="hero">
-  <h1>Write. Share. Learn.</h1>
-  <p>Minimal thoughts, maximum signal.</p>
-</section>
 
-<section class="feed">
-  <article class="post-card">
-    <h2>First Post</h2>
-    <p class="meta">by Master · 2 min read</p>
-    <p>This is a minimalist blog layout, inspired by clean and focused platforms...</p>
-    <a href="#" class="read-more">Read more →</a>
-  </article>
+<main class="container">
+  <section class="posts-grid">
 
-  <article class="post-card">
-    <h2>Second Post</h2>
-    <p class="meta">by Master · 5 min read</p>
-    <p>Writing software is mostly thinking. Typing is just the final consequence...</p>
-    <a href="#" class="read-more">Read more →</a>
-  </article>
-</section>
+    <!-- Static posts example  -->
+    {% for i in "123456"|make_list %}
+    <article class="post-card">
+      <div class="post-image"></div>
+      <div class="post-content">
+        <h2 class="post-title">Example Post {{ i }}</h2>
+        <p class="post-excerpt">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+          vehicula, justo nec hendrerit aliquam, urna urna accumsan augue.
+        </p>
+      </div>
+    </article>
+    {% endfor %}
+
+  </section>
+</main>
 {% endblock %}
+

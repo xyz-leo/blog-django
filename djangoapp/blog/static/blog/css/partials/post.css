@@ -1,0 +1,82 @@
+/* =========================
+   Posts Grid Layout
+========================= */
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0 4rem;
+  transition: background 0.3s ease;
+}
+
+/* =========================
+   Post Card
+========================= */
+.post-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s ease, background 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+}
+
+/* =========================
+   Post Image (placeholder or real)
+========================= */
+.post-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: linear-gradient(145deg, var(--border-color), var(--bg-color));
+  background-size: cover;
+  background-position: center;
+  transition: background 0.3s ease;
+}
+
+/* =========================
+   Post Content
+========================= */
+.post-content {
+  padding: 1.2rem;
+}
+
+.post-title {
+  font-size: 1.2rem;
+  margin: 0 0 0.6rem;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.post-excerpt {
+  font-size: 0.95rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+/* =========================
+   Responsive Design
+========================= */
+@media (max-width: 768px) {
+  .posts-grid {
+    gap: 1.2rem;
+  }
+
+  .post-card {
+    border-radius: 10px;
+  }
+
+  .post-content {
+    padding: 1rem;
+  }
+
+  .post-title {
+    font-size: 1.05rem;
+  }
+}
+

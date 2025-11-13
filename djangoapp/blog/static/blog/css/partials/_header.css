@@ -1,39 +1,142 @@
-/* ===== Header navbar ===== */
-.navbar {
-  background: #fff;
-  padding: 1rem 0;
-  border-bottom: 1px solid #eaeaea;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+/* =========================
+   Header Layout
+========================= */
+.site-header {
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-color);
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
-.navbar .container {
+.header-container {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  padding: 1rem 0;
 }
 
+/* =========================
+   Logo
+========================= */
 .logo {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  text-decoration: none;
-  color: #111;
+  color: var(--text-color);
+  transition: color 0.3s ease;
 }
 
-.nav-links {
-  list-style: none;
+.logo:hover {
+  color: var(--accent-color);
+}
+
+/* =========================
+   Navigation Menu
+========================= */
+.nav-menu {
   display: flex;
   gap: 1.5rem;
 }
 
-.nav-links a {
-  text-decoration: none;
-  color: #444;
+.nav-menu a {
+  color: var(--text-color);
   font-weight: 500;
-  transition: 0.2s;
+  transition: color 0.2s ease;
 }
 
-.nav-links a:hover {
-  color: #000;
+.nav-menu a:hover {
+  color: var(--accent-color);
 }
+
+/* =========================
+   Header Actions
+========================= */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.12s ease, color 0.3s ease;
+  font-size: 1rem;
+}
+
+.theme-toggle:hover {
+  background: var(--hover-bg);
+  transform: translateY(-1px);
+}
+
+/* =========================
+   Hamburger Menu
+========================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text-color);
+  margin: 4px auto;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+}
+
+/* Animate hamburger when active */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-6px);
+}
+
+/* =========================
+   Responsive Behavior
+========================= */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: var(--card-bg);
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    border-left: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .nav-menu.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}
+

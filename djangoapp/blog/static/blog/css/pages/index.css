@@ -1,16 +1,56 @@
-.hero {
-  text-align: center;
-  padding: 3rem 0;
+/* index.css */
+
+:root {
+  /* Dark theme by default */
+  --bg-color: #0e0e0e;
+  --text-color: #f1f1f1;
+  --card-bg: #181818;
+  --accent-color: #00ff99;
+  --accent-hover: #00cc7a;
+  --border-color: #1f1f1f;
 }
 
-.hero h1 {
-  font-size: 2.6rem;
-  font-weight: 700;
-  margin-bottom: 0.3rem;
+.light-theme {
+  --bg-color: #f9f9f9;
+  --text-color: #111;
+  --card-bg: #ffffff;
+  --accent-color: #007bff;
+  --accent-hover: #0056b3;
+  --border-color: #ddd;
 }
 
-.hero p {
-  font-size: 1.1rem;
-  color: #555;
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+a {
+  text-decoration: none;
+  color: var(--accent-color);
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    font-size: 0.95rem;
+  }
+
+  .container {
+    width: 92%;
+  }
 }
 

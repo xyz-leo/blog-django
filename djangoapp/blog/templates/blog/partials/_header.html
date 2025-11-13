@@ -1,12 +1,24 @@
-<header class="navbar">
-  <div class="container">
-    <a href="/" class="logo">MyBlog</a>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/posts">Posts</a></li>
-        <li><a href="/about">About</a></li>
-      </ul>
+<header class="site-header">
+  <div class="header-container container">
+    <a href="/" class="logo">xyzBlog</a>
+
+    <nav id="nav-menu" class="nav-menu">
+      <a href="#">Home</a>
+      <a href="#">Posts</a>
+      <a href="#">About</a>
     </nav>
+
+    <div class="header-actions">
+      <!-- Theme toggle -->
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+        <span class="theme-icon">🌙</span>
+      </button>
+
+      <!-- Hamburger (mobile) -->
+      <button id="hamburger" class="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
 </header>
+

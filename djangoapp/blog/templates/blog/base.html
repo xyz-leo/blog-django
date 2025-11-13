@@ -7,7 +7,6 @@
   {% block css %}{% endblock %}
 </head>
 <body>
-  {{ site_setup.title }} <!-- Remove later: Site title from context variable -->
 
   <!-- Header Section -->
   {% include 'blog/partials/_header.html' %}
@@ -24,7 +23,43 @@
   <!-- Footer Section -->
   {% include 'blog/partials/_footer.html' %}
 
-  {% block js %}{% endblock %}
+  {% block js %}
+  <script>
+    (function() {
+      const html = document.documentElement;
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const hamburger = document.getElementById('hamburger');
+      const navMenu = document.getElementById('nav-menu');
+      const THEME_KEY = 'theme';
 
-</body>
-</html>
+      // Apply stored theme
+      const stored = localStorage.getItem(THEME_KEY);
+      if (stored === 'light') html.classList.add('light-theme');
+
+      // Theme toggle
+      function updateThemeIcon() {
+        const icon = themeToggleBtn.querySelector('.theme-icon');
+        icon.textContent = html.classList.contains('light-theme') ? '🌞' : '🌙';
+      }
+
+      themeToggleBtn.addEventListener('click', () => {
+        html.classList.toggle('light-theme');
+        const mode = html.classList.contains('light-theme') ? 'light' : 'dark';
+        localStorage.setItem(THEME_KEY, mode);
+        updateThemeIcon();
+      });
+
+      // Hamburger toggle
+      if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('active');
+          navMenu.classList.toggle('open');
+        });
+      }
+
+      updateThemeIcon();
+    })();
+  </script>
+  {% endblock %}
+
+
