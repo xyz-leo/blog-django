@@ -23,6 +23,7 @@
   <!-- Footer Section -->
   {% include 'blog/partials/_footer.html' %}
 
+
   {% block js %}
   <script>
     (function() {
@@ -34,17 +35,19 @@
 
       // Apply stored theme
       const stored = localStorage.getItem(THEME_KEY);
-      if (stored === 'light') html.classList.add('light-theme');
+      if (stored === 'dark') html.classList.add('dark-theme');
 
-      // Theme toggle
+      // Update theme icon
       function updateThemeIcon() {
         const icon = themeToggleBtn.querySelector('.theme-icon');
-        icon.textContent = html.classList.contains('light-theme') ? '🌞' : '🌙';
+        if (!icon) return;
+        icon.textContent = html.classList.contains('dark-theme') ? '🌙' : '🌞';
       }
 
+      // Theme toggle
       themeToggleBtn.addEventListener('click', () => {
-        html.classList.toggle('light-theme');
-        const mode = html.classList.contains('light-theme') ? 'light' : 'dark';
+        html.classList.toggle('dark-theme');
+        const mode = html.classList.contains('dark-theme') ? 'dark' : 'light';
         localStorage.setItem(THEME_KEY, mode);
         updateThemeIcon();
       });
@@ -57,6 +60,7 @@
         });
       }
 
+      // Initialize correct icon on load
       updateThemeIcon();
     })();
   </script>

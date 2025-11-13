@@ -2,23 +2,25 @@
    Global Theme Variables
 ========================= */
 :root {
-  /* Dark mode (default) */
+  /* Light mode (default) */
+  --bg-color: #ffffff;
+  --text-color: #111111;
+  --accent-color: #2196f3; /* sky blue */
+  --accent-hover: #1976d2; /* deeper blue for hover */
+  --border-color: #e0e0e0;
+  --card-bg: #f8f9fa;
+  --hover-bg: rgba(0, 0, 0, 0.05);
+}
+
+/* Dark Theme */
+.dark-theme {
   --bg-color: #0e0e0e;
   --text-color: #f1f1f1;
-  --accent-color: #00ff99;
+  --accent-color: #64b5f6; /* lighter sky blue */
+  --accent-hover: #42a5f5; /* hover variant */
   --border-color: #2a2a2a;
   --card-bg: #181818;
   --hover-bg: rgba(255, 255, 255, 0.08);
-}
-
-/* Light Theme */
-.light-theme {
-  --bg-color: #ffffff;
-  --text-color: #121212;
-  --accent-color: #007a3d;
-  --border-color: #dcdcdc;
-  --card-bg: #f5f5f5;
-  --hover-bg: rgba(0, 0, 0, 0.05);
 }
 
 /* =========================

@@ -10,9 +10,28 @@
 {% block content %}
 
 <main class="container">
-  <section class="posts-grid">
 
-    <!-- Static posts example  -->
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 class="hero-title">Welcome to <span>xyzBlog</span></h1>
+    <p class="hero-subtitle">
+      Insights, thoughts, and ideas about technology, software, and creativity.
+    </p>
+    <a href="#posts" class="hero-cta">Check out the latest posts</a>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <h2>About This Blog</h2>
+    <p>
+      This space is dedicated to sharing technical reflections, experiments, and
+      notes about programming, logic, and learning. Each post is written with
+      curiosity and clarity in mind.
+    </p><hr>
+  </section>
+
+  <!-- Posts Section -->
+  <section id="posts" class="posts-grid">
     {% for i in "123456"|make_list %}
     <article class="post-card">
       <div class="post-image"></div>
@@ -25,8 +44,9 @@
       </div>
     </article>
     {% endfor %}
-
   </section>
+
 </main>
+
 {% endblock %}
 

@@ -1,56 +1,84 @@
 /* index.css */
 
-:root {
-  /* Dark theme by default */
-  --bg-color: #0e0e0e;
-  --text-color: #f1f1f1;
-  --card-bg: #181818;
-  --accent-color: #00ff99;
-  --accent-hover: #00cc7a;
-  --border-color: #1f1f1f;
+/* Hero section */
+.hero {
+  text-align: center;
+  margin-top: 4rem;
+  margin-bottom: 5rem;
 }
 
-.light-theme {
-  --bg-color: #f9f9f9;
-  --text-color: #111;
-  --card-bg: #ffffff;
-  --accent-color: #007bff;
-  --accent-hover: #0056b3;
-  --border-color: #ddd;
-}
-
-body {
-  margin: 0;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: var(--bg-color);
+.hero-title {
+  font-size: 2.5rem;
+  font-weight: 700;
   color: var(--text-color);
+}
+
+.hero-title span {
+  color: var(--accent-color);
+}
+
+.hero-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-cta {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 8px;
+  background: var(--accent-color);
+  color: var(--bg-color);
+  font-weight: 600;
   transition: background 0.3s ease, color 0.3s ease;
 }
 
-a {
-  text-decoration: none;
+.hero-cta:hover {
+  background: var(--accent-hover);
+}
+
+/* About section */
+.about {
+  max-width: 800px;
+  margin: 0 auto 4rem;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.about h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
   color: var(--accent-color);
-  transition: color 0.2s;
 }
 
-a:hover {
-  color: var(--accent-hover);
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
+.about p {
+  line-height: 1.6;
+  font-size: 1rem;
+  color: var(--text-muted);
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  body {
-    font-size: 0.95rem;
+  .hero-title {
+    font-size: 2rem;
   }
 
-  .container {
-    width: 92%;
+  .hero-subtitle {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .hero-cta {
+    font-size: 0.95rem;
+    padding: 0.7rem 1.3rem;
+  }
+
+  .about h2 {
+    font-size: 1.5rem;
   }
 }
 
