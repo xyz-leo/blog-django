@@ -12,28 +12,36 @@
 
   <!-- Hero Section -->
   <section class="hero">
-    <h1 class="hero-title">Welcome to <span>xyzBlog</span></h1>
-    <p class="hero-subtitle">
-      Insights, thoughts, and ideas about technology, software, and creativity.
-    </p>
-    <a href="#posts" class="hero-cta">Check out the latest posts</a>
+	  <h1 class="hero-title">Welcome to <span>{{ site_setup.title }}</span></h1>
+    {% if site_setup.show_description %}
+      <p class="hero-subtitle">
+        {{ site_setup.description }}
+      </p>
+      <a href="#posts" class="hero-cta">Check out the latest posts</a>
+    {% endif %}
   </section>
 
-  <!-- About Section -->
-  <section class="about">
-    <h2>About This Blog</h2>
-    <p>
-      This space is dedicated to sharing technical reflections, experiments, and
-      notes about programming, logic, and learning. Each post is written with
-      curiosity and clarity in mind.
-    </p><hr>
-  </section>
+  {% if site_setup.show_about %}
+    <!-- About Section -->
+    <section class="about">
+      <h2>About This Blog</h2>
+      <p>
+        This space is dedicated to sharing technical reflections, experiments, and
+        notes about programming, logic, and learning. Each post is written with
+        curiosity and clarity in mind.
+      </p><hr>
+    </section>
+  {% endif %}
 
-  <!-- Posts Section -->
-  {% include 'blog/partials/_post-list.html' %}
+  {% if site_setup.show_post_list %}
+    <!-- Posts Section -->
+    {% include 'blog/partials/_post-list.html' %}
+  {% endif %}
 
-  <!-- Pagination -->
-  {% include 'blog/partials/_pagination.html' %}
+  {% if site_setup.show_pagination %}
+    <!-- Pagination -->
+    {% include 'blog/partials/_pagination.html' %}
+  {% endif %}
 
 {% endblock %}
 

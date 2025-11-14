@@ -1,11 +1,15 @@
 <header class="site-header">
   <div class="header-container container">
-    <a href="/" class="logo">xyzBlog</a>
+    <a href="/" class="logo">{{ site_setup.title }}</a>
 
     <nav id="nav-menu" class="nav-menu">
-      <a href="/">Home</a>
-      <a href="#posts">Posts</a>
-      <a href="#">About</a>
+      {% for link in site_setup.menulink_set.all %}
+        {% if link.new_tab %}
+          <a target="_blank" class="menu-link" href="{{  link.url_or_path }}">{{ link.text }}</a>
+        {% else %}
+          <a class="menu-link" href="{{ link.url_or_path }}">{{ link.text }}</a>
+        {% endif %}
+      {% endfor %}
     </nav>
 
     <div class="header-actions">

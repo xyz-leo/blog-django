@@ -14,6 +14,8 @@ class SiteSetup(models.Model):
     show_search = models.BooleanField(default=True)
     show_menu = models.BooleanField(default=True)
     show_description = models.BooleanField(default=True)
+    show_post_list = models.BooleanField(default=True)
+    show_about = models.BooleanField(default=True)
     show_pagination = models.BooleanField(default=True)
     show_footer = models.BooleanField(default=True)
 

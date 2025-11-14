@@ -9,7 +9,9 @@
 <body>
 
   <!-- Header Section -->
-  {% include 'blog/partials/_header.html' %}
+  {% if site_setup.show_header %}
+    {% include 'blog/partials/_header.html' %}
+  {% endif %}
 
   <main class="container">
     {% block content %}
@@ -17,8 +19,11 @@
     {% endblock %}
   </main>
 
-  <!-- Footer Section -->
-  {% include 'blog/partials/_footer.html' %}
+  {% if site_setup.show_footer %}
+    <!-- Footer Section -->
+    {% include 'blog/partials/_footer.html' %}
+  {% endif %}
+
 
 
   {% block js %}
