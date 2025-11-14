@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 {% load static %}
 
-{% block title %}Post - xyzBlog{% endblock %}
+{% block title %}Post - {{ site_setup.title }}{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'blog/css/pages/post.css' %}">

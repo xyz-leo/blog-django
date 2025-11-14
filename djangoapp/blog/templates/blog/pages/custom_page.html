@@ -1,0 +1,21 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block title %}Custom Page - {{ site_setup.title }}{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'blog/css/pages/custom_page.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="custom-page-container">
+    <h1 class="custom-page-title">Custom Page</h1>
+
+    <div class="custom-page-content">
+      {{ site_setup.about }}
+      {{ site_setup.description }}
+      {{ site_setup.about }}
+      {{ page.content|safe }}
+    </div>
+</div>
+{% endblock %}

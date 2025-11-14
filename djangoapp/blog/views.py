@@ -23,6 +23,11 @@ def post(request):
     return render(request, 'blog/pages/post.html')
 
 
+
+def custom_page(request):
+    return render(request, 'blog/pages/custom_page.html')
+
+
 # to implement later
 #def index(request):
 #    posts_list = Post.objects.all().order_by('-created_at')
