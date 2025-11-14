@@ -1,12 +1,44 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'blog/css/partials/_pagination.css' %}">
 
-<!-- Pagination Component, now its incomplete, for testing purpose only -->
+{% if page_obj %}
 <div class="pagination">
-  <a href="?page=1">&laquo;</a>
-  <a href="?page=2">2</a>
-  <span class="active">3</span>
-  <a href="?page=4">4</a>
-  <a href="?page=5">&raquo;</a>
-</div>
 
+  {# Previous #}
+  {% if page_obj.has_previous %}
+    <a href="?page=1">&laquo;</a>
+    <a href="?page={{ page_obj.previous_page_number }}">Prev</a>
+  {% else %}
+    <span class="disabled">&laquo;</span>
+    <span class="disabled">Prev</span>
+  {% endif %}
+
+  {# Page numbers #}
+  {% with current=page_obj.number %}
+    {% with total=page_obj.paginator.num_pages %}
+    
+      {% for p in page_obj.paginator.page_range %}
+        {% if p >= current|add:-1 and p <= current|add:1 %}
+          {% if p == current %}
+            <span class="active">{{ p }}</span>
+          {% else %}
+            <a href="?page={{ p }}">{{ p }}</a>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+    {% endwith %}
+  {% endwith %}
+
+
+  {# Next #}
+  {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">Next</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;</a>
+  {% else %}
+    <span class="disabled">Next</span>
+    <span class="disabled">&raquo;</span>
+  {% endif %}
+
+</div>
+{% endif %}
