@@ -54,7 +54,7 @@ class MenuLink(models.Model):
     new_tab = models.BooleanField(default=False)
 
     site_setup = models.ForeignKey(
-        'SiteSetup', on_delete=models.CASCADE, blank=True, null=True, default=None)
+        'SiteSetup', on_delete=models.CASCADE, blank=True, null=True, default=None, related_name='menu_links')
 
     def __str__(self):
         return self.text

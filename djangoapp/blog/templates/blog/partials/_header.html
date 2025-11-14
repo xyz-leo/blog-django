@@ -3,7 +3,7 @@
     <a href="/" class="logo">{{ site_setup.title }}</a>
 
     <nav id="nav-menu" class="nav-menu">
-      {% for link in site_setup.menulink_set.all %}
+      {% for link in site_setup.menu_links.all %}
         {% if link.new_tab %}
           <a target="_blank" class="menu-link" href="{{  link.url_or_path }}">{{ link.text }}</a>
         {% else %}
