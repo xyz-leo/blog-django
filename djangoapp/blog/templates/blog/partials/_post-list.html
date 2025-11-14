@@ -4,8 +4,10 @@
 
   {% for i in "12345678"|make_list %}
   <article class="post-card">
-    <div class="post-image">
-      <img src="https://picsum.photos/400?random={{ forloop.counter }}" alt="Post image">
+    {% if site_setup.show_post_miniature_image %}
+      <div class="post-image">
+        <img src="https://picsum.photos/400?random={{ forloop.counter }}" alt="Post image">
+    {% endif %}
     </div>
 
     <div class="post-content">

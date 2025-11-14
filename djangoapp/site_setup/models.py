@@ -10,11 +10,13 @@ class SiteSetup(models.Model):
 
     title = models.CharField(max_length=70)
     description = models.CharField(max_length=255)
+    about = models.CharField(max_length=500, null=True, blank=True)
     show_header = models.BooleanField(default=True)
     show_search = models.BooleanField(default=True)
     show_menu = models.BooleanField(default=True)
     show_description = models.BooleanField(default=True)
     show_post_list = models.BooleanField(default=True)
+    show_post_miniature_image = models.BooleanField(default=True)
     show_about = models.BooleanField(default=True)
     show_pagination = models.BooleanField(default=True)
     show_footer = models.BooleanField(default=True)
