@@ -1,0 +1,58 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block title %}Post - xyzBlog{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'blog/css/pages/post.css' %}">
+{% endblock %}
+
+{% block content %}
+<article class="post-wrapper">
+
+  <!-- Cover Image -->
+  <div class="post-cover">
+    <img src="https://picsum.photos/1200/500" alt="Post Cover">
+  </div>
+
+  <!-- Post Header Section -->
+  <header class="post-header container">
+    <h1 class="post-title">Example Blog Post Title</h1>
+
+    <div class="post-meta">
+      <span class="meta-author">🖋️ John Doe</span>
+      <span class="meta-separator">•</span>
+      <span class="meta-date">📅 Jan 10, 2025</span>
+      <span class="meta-separator">•</span>
+      <span class="meta-category">🏷️ Programming</span>
+    </div>
+
+    <p class="post-excerpt">
+      This is the excerpt of the post. A short summary that introduces the main idea
+      and invites the reader to continue reading the full content.
+    </p><hr>
+  </header>
+
+  <!-- Main Content -->
+  <section class="post-content container">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris feugiat congue
+      velit, at egestas erat varius sit amet. Suspendisse potenti. Sed dictum tortor
+      vel dui tempor aliquam.
+    </p>
+
+    <p>
+      Integer tincidunt leo a ante pharetra, sit amet luctus sem tempor. Mauris
+      bibendum, justo vitae sagittis maximus, velit orci facilisis metus.
+    </p>
+
+    <h2>Subsection Example</h2>
+    <p>
+      Aenean iaculis eros non massa venenatis, id vulputate nunc condimentum. Ut a
+      tempor mi. Integer posuere mauris vitae tortor sodales luctus.
+    </p>
+  </section>
+
+</article>
+{% endblock %}
+

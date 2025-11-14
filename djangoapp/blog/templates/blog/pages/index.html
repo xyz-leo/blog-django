@@ -5,6 +5,7 @@
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'blog/css/pages/index.css' %}">
+<link rel="stylesheet" href="{% static 'blog/css/partials/_post-card.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -31,9 +32,13 @@
   </section>
 
   <!-- Posts Section -->
-  {% include 'blog/partials/_posts.html' %}
+  {% include 'blog/partials/_post-list.html' %}
+
 
 </main>
+
+  <!-- Pagination -->
+  {% include 'blog/partials/_pagination.html' %}
 
 {% endblock %}
 
