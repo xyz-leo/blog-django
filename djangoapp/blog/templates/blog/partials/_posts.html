@@ -1,0 +1,22 @@
+<!-- blog/partials/_posts.html -->
+
+<section id="posts" class="posts-grid">
+
+  {% for i in "123456"|make_list %}
+  <article class="post-card">
+    <div class="post-image">
+      <img src="https://picsum.photos/400?random={{ forloop.counter }}" alt="Post image">
+    </div>
+
+    <div class="post-content">
+      <h2 class="post-title">Example Post {{ i }}</h2>
+      <p class="post-excerpt">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
+        vehicula, justo nec hendrerit aliquam, urna urna accumsan augue.
+      </p>
+      <a class="post-link" href="#">Read -></a>
+    </div>
+  </article>
+  {% endfor %}
+
+</section>
