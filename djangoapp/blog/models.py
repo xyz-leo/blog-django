@@ -78,11 +78,22 @@ class Page(models.Model):
         return self.title
 
 
-# ============================== POST ============================== 
+# ============================== POST ==============================
+# Post Manager class (inherit from Django Manager)
+class PostManager(models.Manager):
+    def get_published_and_order_by(self): # self here represents "objects"
+        return self\
+        .filter(is_published=True)\
+        .order_by('-pk')
+
+
+# Post model
 class Post(models.Model):
     class Meta:
         verbose_name = 'Post'
         verbose_name_plural = 'Posts'
+
+    objects = PostManager()
 
     title = models.CharField(max_length=50)
 
