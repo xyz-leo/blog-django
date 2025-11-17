@@ -2,23 +2,26 @@
 
 <section id="posts" class="posts-grid">
 
-  {% for i in "12345678"|make_list %}
+  {% for post in page_obj %}
   <article class="post-card">
     {% if site_setup.show_post_miniature_image %}
-      <div class="post-image">
-        <img src="https://picsum.photos/400?random={{ forloop.counter }}" alt="Post image">
+      {% if post.cover %}
+      	<div class="post-image">
+	<img src="{{ post.cover.url }}" alt="Image for the {{ post.title }}">
+      {% endif %}
     {% endif %}
     </div>
 
     <div class="post-content">
-      <h2 class="post-title">Example Post {{ i }}</h2>
+      <h2 class="post-title">{{ post.title }}</h2>
       <p class="post-excerpt">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-        vehicula, justo nec hendrerit aliquam, urna urna accumsan augue.
+        {{ post.excerpt }}
       </p>
-      <a class="post-link" href="post">Read -></a>
+      <a class="post-link" href="{% url 'blog:post' slug=post.slug %}">Read -></a>
     </div>
   </article>
+  {% empty %}
+    <p>No posts yet.</p>
   {% endfor %}
 
 </section>

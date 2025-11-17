@@ -12,7 +12,8 @@
 .post-cover img {
   margin-top: 3rem;
   width: 100%;
-  height: auto;
+  height: 180px;
+  overflow: hidden;
   display: block;
   object-fit: cover;
   aspect-ratio: 16/6; /* landscape */
