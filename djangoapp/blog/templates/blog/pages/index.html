@@ -11,8 +11,9 @@
 {% block content %}
 
   <!-- Hero Section -->
+  {% if is_welcome %}
   <section class="hero">
-	  <h1 class="hero-title">Welcome to <span>{{ site_setup.title }}</span></h1>
+    <h1 class="hero-title">Welcome to <span>{{ site_setup.title }}</span></h1>
     {% if site_setup.show_description %}
       <p class="hero-subtitle">
         {{ site_setup.description }}
@@ -21,7 +22,7 @@
     {% endif %}
   </section>
 
-  {% if site_setup.show_about %}
+    {% if site_setup.show_about %}
     <!-- About Section -->
     <section class="about">
       <h2>About This Blog</h2>
@@ -29,6 +30,15 @@
 	{{ site_setup.about }}
       </p><hr>
     </section>
+    {% endif %}
+
+  {% else %}
+  <section class="hero">
+    {% if author %}
+    <h1 class="hero-title">Posts by: {{ author.get_full_name }}</h1>
+    {% else %}
+    <h1 class="hero-title">Category: {{ category.name }}</h1>
+    {% endif %}
   {% endif %}
 
   {% if site_setup.show_post_list %}
