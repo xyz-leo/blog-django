@@ -36,8 +36,10 @@
   <section class="hero">
     {% if author %}
     <h1 class="hero-title">Posts by: {{ author.get_full_name }}</h1>
-    {% else %}
+    {% elif category %}
     <h1 class="hero-title">Category: {{ category.name }}</h1>
+    {% else %}
+    <h1 class="hero-title">Tag: {{ tag.name }}</h1>
     {% endif %}
   {% endif %}
 

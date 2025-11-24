@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import Paginator
-from blog.models import Page, Post, Category
+from blog.models import Page, Post, Category, Tag
 from django.contrib.auth.models import User
 
 
@@ -58,5 +58,21 @@ def posts_by_category(request, slug):
         'blog/pages/index.html',
         {
             'page_obj': page_obj, 'is_welcome': False, 'category': category,
+        }
+    )
+
+
+def posts_by_tag(request, slug):
+    tag = get_object_or_404(Tag, slug=slug)
+    posts = Post.objects.get_published_and_order_by().filter(tags__slug=slug)
+    paginator = Paginator(posts, 6)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    return render(
+        request,
+        'blog/pages/index.html',
+        {
+            'page_obj': page_obj, 'is_welcome': False, 'tag': tag,
         }
     )
