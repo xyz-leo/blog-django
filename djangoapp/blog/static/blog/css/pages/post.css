@@ -79,6 +79,14 @@
 }
 
 /* =========================
+   CodeMirror
+========================= */
+.CodeMirror {
+  height: auto !important;
+  font-size: 1rem !important;
+}
+
+/* =========================
    Responsive
 ========================= */
 

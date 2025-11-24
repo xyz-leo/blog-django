@@ -4,6 +4,7 @@ from django_summernote.models import AbstractAttachment
 from django.urls import reverse
 from utils.slug_creator import create_slug
 from utils.resize_images import resize_image
+from utils.sanitize import sanitize_html
 
 
 # ============================== TAG ============================== 
@@ -153,6 +154,12 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = create_slug(self.title, 3)
+
+
+        # Sanitize content from summernote
+        if self.content:
+            self.content = sanitize_html(self.content)
+
 
         current_cover_name = str(self.cover.name)
         super_save = super().save(*args, **kwargs)

@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.core.paginator import Paginator
-from blog.models import Post, Category
+from blog.models import Page, Post, Category
 from django.contrib.auth.models import User
 
 
@@ -26,7 +26,8 @@ def post(request, slug):
 
 
 def custom_page(request, slug):
-    return render(request, 'blog/pages/custom_page.html')
+    page = get_object_or_404(Page, slug=slug, is_published=True)
+    return render(request, 'blog/pages/custom_page.html', {'page': page})
 
 
 def posts_by_author(request, author_id):

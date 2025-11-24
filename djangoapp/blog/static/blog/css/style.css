@@ -49,6 +49,9 @@ a:hover {
   opacity: 0.8;
 }
 
+pre {
+  font-size: 1rem;
+}
 .container {
   width: 90%;
   max-width: 1200px;
