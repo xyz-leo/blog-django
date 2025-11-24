@@ -38,8 +38,10 @@
     <h1 class="hero-title">Posts by: {{ author.get_full_name }}</h1>
     {% elif category %}
     <h1 class="hero-title">Category: {{ category.name }}</h1>
-    {% else %}
+    {% elif tag %}
     <h1 class="hero-title">Tag: {{ tag.name }}</h1>
+    {% else %}
+    <h1 class="hero-title">Search results for: {{ search_term }}</h1>
     {% endif %}
   {% endif %}
 

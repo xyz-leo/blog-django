@@ -74,6 +74,10 @@ class Page(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = create_slug(self.title, 3)
+
+        if self.content:
+            self.content = sanitize_html(self.content)
+
         return super().save(*args, **kwargs)
 
     def __str__(self):

@@ -1,28 +1,40 @@
 <header class="site-header">
   <div class="header-container container">
-    <a href="/" class="logo">{{ site_setup.title }}</a>
 
+    <!-- Line 1: Logo + Theme/Mobile menu -->
+    <div class="header-top">
+      <a href="/" class="logo">{{ site_setup.title }}</a>
+
+      <div class="header-actions">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-icon">🌙</span>
+        </button>
+
+        <button id="hamburger" class="hamburger" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Line 2: Search -->
+    <form action="/search/" method="get" class="search-form">
+      <input type="text" name="q" placeholder="Search posts..." class="search-input">
+      <button type="submit" class="search-button">Search</button>
+    </form>
+
+    <!-- Line 3: Menu -->
     <nav id="nav-menu" class="nav-menu">
       {% for link in site_setup.menu_links.all %}
-        {% if link.new_tab %}
-          <a target="_blank" class="menu-link" href="{{ link.url_or_path }}">{{ link.text }}</a>
-        {% else %}
-          <a class="menu-link" href="{{ link.url_or_path }}">{{ link.text }}</a>
-        {% endif %}
+        <a
+          {% if link.new_tab %}target="_blank"{% endif %}
+          class="menu-link"
+          href="{{ link.url_or_path }}"
+        >
+          {{ link.text }}
+        </a>
       {% endfor %}
     </nav>
 
-    <div class="header-actions">
-      <!-- Theme toggle -->
-      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
-        <span class="theme-icon">🌙</span>
-      </button>
-
-      <!-- Hamburger (mobile) -->
-      <button id="hamburger" class="hamburger" aria-label="Toggle navigation">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
   </div>
 </header>
 
