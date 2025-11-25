@@ -1,5 +1,4 @@
-from logging import setLogRecordFactory
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.core.paginator import Paginator
 from blog.models import Page, Post, Category, Tag
 from django.contrib.auth.models import User
@@ -83,6 +82,9 @@ def posts_by_tag(request, slug):
 
 def search(request):
     q = request.GET.get("q", "").strip()
+
+    if not q:
+        return redirect('blog:index')
 
     posts = Post.objects.get_published_and_order_by().filter(
         Q(title__icontains=q) |

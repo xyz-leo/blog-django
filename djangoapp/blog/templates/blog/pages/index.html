@@ -1,13 +1,12 @@
 {% extends "blog/base.html" %}
 {% load static %}
 
-{% block title %}Home - {{ site_setup.title }}{% endblock %}
+{% block title %}{{ site_setup.title }}{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'blog/css/pages/index.css' %}">
 <link rel="stylesheet" href="{% static 'blog/css/partials/_post-card.css' %}">
 {% endblock %}
-
 {% block content %}
 
   <!-- Hero Section -->
@@ -18,12 +17,11 @@
       <p class="hero-subtitle">
         {{ site_setup.description }}
       </p>
-      <a href="#posts" class="hero-cta">Check out the latest posts</a>
     {% endif %}
   </section>
 
-    {% if site_setup.show_about %}
     <!-- About Section -->
+    {% if site_setup.show_about %}
     <section class="about">
       <h2>About This Blog</h2>
       <p>
@@ -45,8 +43,9 @@
     {% endif %}
   {% endif %}
 
-  {% if site_setup.show_post_list %}
     <!-- Posts Section -->
+  {% if site_setup.show_post_list %}
+    <h2 class="hero">Posts</h2>
     {% include 'blog/partials/_post-list.html' %}
   {% endif %}
 

@@ -98,4 +98,14 @@
   .post-excerpt {
     font-size: 1rem;
   }
+
+  .post-meta {
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+    color: var(--accent-color);
+  }
+
+  .CodeMirror {
+    font-size: 0.8rem !important;
+  }
 }

@@ -17,10 +17,12 @@
     </div>
 
     <!-- Line 2: Search -->
-    <form action="/search/" method="get" class="search-form">
-      <input type="text" name="q" placeholder="Search posts..." class="search-input">
+    {% if site_setup.show_search %}
+    <form action="{% url 'blog:search' %}" method="get" id="searchForm" class="search-form">
+      <input type="text" name="q" placeholder="Search posts..." value="{{ search_term }}" id="searchInput" class="search-input" required>
       <button type="submit" class="search-button">Search</button>
     </form>
+    {% endif %}
 
     <!-- Line 3: Menu -->
     <nav id="nav-menu" class="nav-menu">
