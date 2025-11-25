@@ -1,15 +1,16 @@
 from django.urls import path
-from blog.views import index, post, custom_page, posts_by_author, posts_by_category, posts_by_tag, search
+from blog.views import BaseListView, post, custom_page, PostsByAuthorListView, PostsByCategoryListView, PostsByTagListView, PostSearchListView
 
 
 app_name = 'blog'
 
 urlpatterns = [
-    path('', index, name='index'),
+    path('', BaseListView.as_view(), name='index'),
     path('post/<slug:slug>/', post, name='post'),
     path('page/<slug:slug>', custom_page, name='custom_page'),
-    path('author-posts/<int:author_id>/', posts_by_author, name='posts_by_author'),
-    path('category/<slug:slug>/', posts_by_category, name='posts_by_category'),
-    path('tag/<slug:slug>/', posts_by_tag, name='posts_by_tag'),
-    path('search/', search, name='search'),
+
+    path('author-posts/<int:author_id>/', PostsByAuthorListView.as_view(), name='posts_by_author'),
+    path('category/<slug:slug>/', PostsByCategoryListView.as_view(), name='posts_by_category'),
+    path('tag/<slug:slug>/', PostsByTagListView.as_view(), name='posts_by_tag'),
+    path('search/', PostSearchListView.as_view(), name='search'),
 ]
