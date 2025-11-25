@@ -1,3 +1,4 @@
+from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect, render
 from django.core.paginator import Paginator
 from blog.models import Page, Post, Category, Tag
@@ -17,24 +18,33 @@ def index(request):
         request,
         'blog/pages/index.html',
         {
-            'page_obj': page_obj, 'is_welcome': True,
+            'page_obj': page_obj, 'is_welcome': True, 'page_title': 'Home'
         }
     )
 
 
 def post(request, slug):
-    post = Post.objects.get_published_and_order_by().filter(slug=slug).first()
-    return render(request, 'blog/pages/post.html', {'post': post})
+    post_obj = Post.objects.get_published_and_order_by().filter(slug=slug).first()
+
+    if not post_obj:
+        raise Http404("Post does not exist")
+
+    return render(request, 'blog/pages/post.html', {'post': post_obj})
 
 
 def custom_page(request, slug):
     page = get_object_or_404(Page, slug=slug, is_published=True)
+
     return render(request, 'blog/pages/custom_page.html', {'page': page})
 
 
 def posts_by_author(request, author_id):
     author = get_object_or_404(User, pk=author_id)
     posts = Post.objects.get_published_and_order_by().filter(created_by__pk=author_id)
+
+    if not posts.exists():
+        raise Http404("No posts or author found.")
+
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
@@ -43,7 +53,7 @@ def posts_by_author(request, author_id):
         request,
         'blog/pages/index.html',
         {
-            'page_obj': page_obj, 'is_welcome': False, 'author': author,
+            'page_obj': page_obj, 'is_welcome': False, 'author': author, 'page_title': 'Posts by ' + author.get_full_name() or author.username,
         }
     )
 
@@ -51,6 +61,10 @@ def posts_by_author(request, author_id):
 def posts_by_category(request, slug):
     category = get_object_or_404(Category, slug=slug)
     posts = Post.objects.get_published_and_order_by().filter(category__slug=slug)
+    
+    if not posts.exists():
+        raise Http404("No posts found in this category.")
+
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
@@ -59,7 +73,7 @@ def posts_by_category(request, slug):
         request,
         'blog/pages/index.html',
         {
-            'page_obj': page_obj, 'is_welcome': False, 'category': category,
+            'page_obj': page_obj, 'is_welcome': False, 'category': category, 'page_title': f'Category: {category.name}' 
         }
     )
 
@@ -67,6 +81,10 @@ def posts_by_category(request, slug):
 def posts_by_tag(request, slug):
     tag = get_object_or_404(Tag, slug=slug)
     posts = Post.objects.get_published_and_order_by().filter(tags__slug=slug)
+
+    if not posts.exists():
+        raise Http404("No posts found in this tag.")
+
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
@@ -75,7 +93,7 @@ def posts_by_tag(request, slug):
         request,
         'blog/pages/index.html',
         {
-            'page_obj': page_obj, 'is_welcome': False, 'tag': tag,
+            'page_obj': page_obj, 'is_welcome': False, 'tag': tag, 'page_title': f'Tag: {tag.name}'
         }
     )
 
@@ -96,5 +114,5 @@ def search(request):
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'blog/pages/index.html', {'page_obj': page_obj, 'is_welcome': False, 'search_term': q,})
+    return render(request, 'blog/pages/index.html', {'page_obj': page_obj, 'is_welcome': False, 'search_term': q, 'page_title': f'Search results for: {q}'})
 

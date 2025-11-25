@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 {% load static %}
 
-{% block title %}{{ site_setup.title }} - {{ page.title }}{% endblock %}
+{% block title %} {{ page.title }} - {{ site_setup.title }}{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'blog/css/pages/custom_page.css' %}">

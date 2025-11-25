@@ -1,7 +1,7 @@
 {% extends "blog/base.html" %}
 {% load static %}
 
-{% block title %}{{ site_setup.title }}{% endblock %}
+{% block title %}{{ page_title }} - {{ site_setup.title}}{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'blog/css/pages/index.css' %}">
@@ -45,7 +45,10 @@
 
     <!-- Posts Section -->
   {% if site_setup.show_post_list %}
+    {% if page_obj %}
     <h2 class="hero">Posts</h2>
+    {% endif %}
+
     {% include 'blog/partials/_post-list.html' %}
   {% endif %}
 

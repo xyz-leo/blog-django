@@ -13,7 +13,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/mode/xml/xml.min.js"></script>
 {% endblock extra_head %}
 
-{% block title %}{{ site_setup.title }} - {{ post.title }}{% endblock %}
+{% block title %}{{ post.title }} - {{ site_setup.title }}{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'blog/css/pages/post.css' %}">
