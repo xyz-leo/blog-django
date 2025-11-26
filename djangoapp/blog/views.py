@@ -1,9 +1,9 @@
 from django.http import Http404
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404, redirect
 from blog.models import Page, Post, Category, Tag
 from django.contrib.auth.models import User
 from django.db.models import Q
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 
 PER_PAGE = 6
@@ -21,19 +21,42 @@ class BaseListView(ListView):
         return Post.objects.get_published_and_order_by()
 
 
-def post(request, slug):
-    post_obj = Post.objects.get_published_and_order_by().filter(slug=slug).first()
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blog/pages/post.html'
+    slug_field = 'slug'
+    context_object_name = 'post'
 
-    if not post_obj:
-        raise Http404("Post does not exist")
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        post = self.get_object()
 
-    return render(request, 'blog/pages/post.html', {'post': post_obj})
+        if not post.is_published:
+            raise Http404("Post does not exist")
+
+        page_title = post.title
+        context.update({'page_title': page_title})
+
+        return context
 
 
-def custom_page(request, slug):
-    page = get_object_or_404(Page, slug=slug, is_published=True)
+class PageDetailView(DetailView):
+    model = Page
+    template_name = 'blog/pages/custom_page.html'
+    slug_field = 'slug'
+    context_object_name = 'page'
 
-    return render(request, 'blog/pages/custom_page.html', {'page': page})
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        page = self.get_object()
+
+        if not page.is_published:
+            raise Http404("Page does not exist")
+
+        page_title = page.title
+        context.update({'page_title': page_title})
+
+        return context
 
 
 class PostsByAuthorListView(BaseListView):
@@ -249,3 +272,18 @@ class PostSearchListView(BaseListView):
 #
 #    return render(request, 'blog/pages/index.html', {'page_obj': page_obj, 'is_welcome': False, 'search_term': q, 'page_title': f'Search results for: {q}'})
 #
+#
+#def custom_page(request, slug):
+#    page = get_object_or_404(Page, slug=slug, is_published=True)
+#
+#    return render(request, 'blog/pages/custom_page.html', {'page': page})
+#
+#
+#def post(request, slug):
+#    post_obj = Post.objects.get_published_and_order_by().filter(slug=slug).first()
+#
+#    if not post_obj:
+#        raise Http404("Post does not exist")
+#
+#    return render(request, 'blog/pages/post.html', {'post': post_obj})
+
